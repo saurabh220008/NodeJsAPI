@@ -35,4 +35,25 @@ router.post('/student/CRUD', function (req,res){
 
 })
 
+router.get("/getuser", function (req, res, next) {
+
+  sql.getUser(req.query.email, req.query.password).then((result) => {
+    
+    if(result?.length == 0){
+      result = [{message : 'User not find'}]
+      res.json(result);
+    }else{
+      res.json(result);
+    }
+  });
+});
+
+
+router.get("/getDropDownMaster", function (req, res) {
+  console.log(req.query.Key1+"  "+req.query.Key2)
+  sql.getDropDownMaster(req).then((result) => {
+    console.log(result[0])
+    res.json(result)
+  })
+})
 module.exports = router;
