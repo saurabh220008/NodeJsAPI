@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const sql = require("../dboperation");
-const sqll = require("mssql");
-var config = require("../dbconfig");
 
 /* GET home page. */
 console.log("API started")
