@@ -60,10 +60,24 @@ async function getDropDownMaster(req){
   }
 }
 
+async function ResourceWiseDailyTaskDetails(data){
+  try{
+    let pool = await sql.connect(config);
+    let res = await pool.request()
+      .input("JSON", sql.NVarChar, JSON.stringify(data))
+      .execute("JCRUD_ResourceWiseDailyTaskDetails")
+    
+      return res.recordsets
+  }catch (error) {
+    console.log(" mathus-error :" + error);
+  }
+}
+
 module.exports = {
   getdata: getdata,
   getdata_withQuery: getdata_withQuery,
   studentAPI:studentAPI,
   getUser: getUser,
-  getDropDownMaster: getDropDownMaster
+  getDropDownMaster: getDropDownMaster,
+  ResourceWiseDailyTaskDetails: ResourceWiseDailyTaskDetails
 };
